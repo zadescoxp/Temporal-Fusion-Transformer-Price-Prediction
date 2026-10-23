@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+lightning_logs/
+.pytest_cache/
+*.egg-info/
+
+backend/data/**
+!backend/data/.gitkeep
+backend/models/**
+!backend/models/.gitkeep
+
+frontend/node_modules/
+frontend/.next/
+frontend/out/
