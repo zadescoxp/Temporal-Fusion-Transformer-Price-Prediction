@@ -56,9 +56,33 @@ Known future inputs are calendar only: day of week, month, quarter, earnings dat
 
 Python 3.12 or 3.13. Newer system Pythons may not have a matching PyTorch wheel.
 
+Unix/macOS (bash):
+
 ```bash
 uv venv --python 3.12 .venv
 source .venv/bin/activate
+pip install -r backend/requirements.txt
+
+cd frontend
+npm install
+```
+
+Windows PowerShell:
+
+```powershell
+uv venv --python 3.12 .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r backend/requirements.txt
+
+cd frontend
+npm install
+```
+
+Windows Command Prompt (activation variant):
+
+```cmd
+uv venv --python 3.12 .venv
+.\.venv\Scripts\activate.bat
 pip install -r backend/requirements.txt
 
 cd frontend
@@ -69,7 +93,15 @@ npm install
 
 From the repository root, with the virtualenv active:
 
+Unix/macOS (bash):
+
 ```bash
+python -m model.train --ticker AAPL
+```
+
+Windows PowerShell:
+
+```powershell
 python -m model.train --ticker AAPL
 ```
 
@@ -84,10 +116,18 @@ On an M4 Air a full run is often 30–90 minutes. Early stopping watches validat
 
 The same job can be started from the API. It blocks until training finishes:
 
+Unix/macOS (bash):
+
 ```bash
 curl -X POST http://localhost:8000/api/train \
   -H 'Content-Type: application/json' \
   -d '{"ticker":"AAPL"}'
+```
+
+Windows PowerShell:
+
+```powershell
+Invoke-RestMethod -Method Post -Uri "http://localhost:8000/api/train" -ContentType "application/json" -Body '{"ticker":"AAPL"}'
 ```
 
 Another ticker is a separate checkpoint. Train it, then load the symbol in the desk.
@@ -96,6 +136,8 @@ Another ticker is a separate checkpoint. Train it, then load the symbol in the d
 
 Two terminals. The virtualenv needs to be active for the API.
 
+Unix/macOS backend terminal (bash):
+
 ```bash
 cd backend
 uvicorn app.main:app --reload --port 8000 --reload-dir app
@@ -103,7 +145,24 @@ uvicorn app.main:app --reload --port 8000 --reload-dir app
 
 `--reload-dir app` keeps a checkpoint write from restarting the process.
 
+Unix/macOS frontend terminal (bash):
+
 ```bash
+cd frontend
+npm run dev
+```
+
+Windows PowerShell backend terminal:
+
+```powershell
+cd backend
+& ..\.venv\Scripts\Activate.ps1
+uvicorn app.main:app --reload --port 8000 --reload-dir app
+```
+
+Windows PowerShell frontend terminal:
+
+```powershell
 cd frontend
 npm run dev
 ```
