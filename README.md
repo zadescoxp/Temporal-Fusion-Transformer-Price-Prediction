@@ -4,6 +4,8 @@ A local research desk for daily equity forecasts. One Temporal Fusion Transforme
 
 Checkpoints, scalers, and processed frames stay on disk. There is no database. This is a research tool, not a trading recommendation.
 
+![TFT Finance desk walkthrough](TFT-Finance.gif)
+
 ![TFT Finance desk, one-year price path for Mastercard](img.png)
 
 ## Features
